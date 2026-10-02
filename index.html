@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyMoney — Your MoMo, Finally Understood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/nimbus-mono-ps">
+  <style>
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --paper: #f7f6f3;
+      --ink: #0b0b0b;
+      --ink-soft: #4a4a4a;
+      --ink-muted: #8a8a8a;
+      --ink-faint: #b8b8b8;
+
+      --green: #0d5c3d;
+      --green-light: #e8efe9;
+
+      --gold: #b8942e;
+
+      --line: #e6e3dd;
+      --line-soft: #efece7;
+
+      --font-display: 'Nimbus Mono PS', 'Nimbus Mono L', 'Courier New', Courier, monospace;
+      --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+      --max: 1120px;
+      --gutter: 32px;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    .display {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .display.xl {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+    }
+
+    .display.lg {
+      font-size: clamp(1.75rem, 4vw, 2.9rem);
+      line-height: 1.1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .lead {
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      line-height: 1.6;
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    em.accent {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(247, 246, 243, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .logo em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: -0.005em;
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+    }
+
+    .nav a.cta {
+      display: inline-flex;
+      align-items: center;
+      height: 38px;
+      padding: 0 20px;
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .nav a.cta:hover {
+      background: var(--green);
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      padding: 220px 0 120px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      margin-bottom: 40px;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .hero h1 {
+      margin: 0 auto 32px;
+      max-width: 900px;
+    }
+
+    .hero .lead {
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 30px;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      border-radius: 100px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-primary:hover {
+      background: var(--green);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      padding: 0 4px;
+      height: auto;
+      border-bottom: 1px solid var(--ink-faint);
+      border-radius: 0;
+      padding-bottom: 3px;
+      font-size: 0.9rem;
+    }
+
+    .btn-ghost:hover {
+      border-bottom-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ============================================================
+       PHONE SHOWCASE
+       ============================================================ */
+    .showcase {
+      padding: 40px 0 160px;
+      text-align: center;
+    }
+
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 56px;
+    }
+
+    .phone {
+      width: 300px;
+      height: 620px;
+      background: #0b0b0b;
+      border-radius: 46px;
+      padding: 10px;
+      box-shadow:
+        0 1px 1px rgba(255, 255, 255, 0.08) inset,
+        0 30px 60px -30px rgba(11, 11, 11, 0.25),
+        0 12px 24px -12px rgba(11, 11, 11, 0.15);
+      position: relative;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #faf9f7;
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 76px;
+      height: 20px;
+      background: #0b0b0b;
+      border-radius: 100px;
+      z-index: 2;
+    }
+
+    .screen-inner {
+      padding: 52px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-align: left;
+    }
+
+    .screen-greeting {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .screen-balance {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.65rem;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--ink);
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .screen-balance .decimals {
+      color: var(--ink-muted);
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .screen-providers {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-top: 12px;
+      align-self: flex-start;
+    }
+
+    .screen-divider {
+      height: 1px;
+      background: var(--line-soft);
+      margin: 20px 0 4px;
+    }
+
+    .screen-section-label {
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      padding: 12px 0 8px;
+    }
+
+    .tx-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .tx-row:last-child {
+      border-bottom: none;
+    }
+
+    .tx-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .tx-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .tx-dot.food { background: #b5654a; }
+    .tx-dot.transport { background: #3d5a80; }
+    .tx-dot.airtime { background: var(--gold); }
+    .tx-dot.groceries { background: var(--green); }
+    .tx-dot.bills { background: #5c6b7a; }
+
+    .tx-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .tx-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      line-height: 1.2;
+    }
+
+    .tx-cat {
+      font-size: 0.58rem;
+      color: var(--ink-muted);
+      margin-top: 2px;
+      letter-spacing: 0.005em;
+    }
+
+    .tx-amount {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tx-amount.neg {
+      color: #b04a3a;
+    }
+
+    .screen-nav {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 14px 0 4px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .screen-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-weight: 500;
+    }
+
+    .screen-nav-item.active {
+      color: var(--ink);
+    }
+
+    .screen-nav-bar {
+      width: 14px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      opacity: 0.3;
+    }
+
+    .screen-nav-item.active .screen-nav-bar {
+      opacity: 1;
+    }
+
+    .showcase-caption {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .showcase-caption .eyebrow {
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+
+    .showcase-caption p {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       STATEMENT
+       ============================================================ */
+    .statement {
+      padding: 180px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .statement-inner {
+      max-width: 780px;
+    }
+
+    .statement .eyebrow {
+      margin-bottom: 40px;
+    }
+
+    .statement h2 {
+      margin-bottom: 48px;
+    }
+
+    .statement p {
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+
+    .statement p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       SETUP GUIDE
+       ============================================================ */
+    .setup {
+      padding: 180px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .setup-header {
+      margin-bottom: 100px;
+    }
+
+    .setup-header .eyebrow {
+      margin-bottom: 32px;
+    }
+
+    .setup-header h2 {
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+
+    .setup-header .lead {
+      max-width: 560px;
+    }
+
+    .setup-list {
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .setup-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 40px;
+      padding: 44px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+
+    .setup-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .setup-body h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .setup-body p {
+      max-width: 620px;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    .setup-body code {
+      font-family: var(--font-display);
+      font-size: 0.9em;
+      background: var(--line-soft);
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    .setup-note {
+      margin-top: 56px;
+      max-width: 620px;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--ink-muted);
+    }
+
+    .setup-note strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       CLOSING CTA
+       ============================================================ */
+    .closing {
+      padding: 200px 0 160px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .closing h2 {
+      max-width: 780px;
+      margin: 0 auto 32px;
+    }
+
+    .closing .lead {
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+
+    .closing .btn {
+      margin-bottom: 28px;
+    }
+
+    .closing-note {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: 56px 0 64px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .footer-brand em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+    }
+
+    .footer-note {
+      width: 100%;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line-soft);
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.01em;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .setup-item {
+        grid-template-columns: 60px 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --gutter: 24px;
+      }
+
+      .hero {
+        padding: 160px 0 80px;
+      }
+
+      .hero-badge {
+        margin-bottom: 32px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .btn-primary {
+        width: 100%;
+      }
+
+      .showcase {
+        padding: 20px 0 120px;
+      }
+
+      .statement,
+      .setup {
+        padding: 120px 0;
+      }
+
+      .setup-header {
+        margin-bottom: 64px;
+      }
+
+      .setup-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 36px 0;
+      }
+
+      .closing {
+        padding: 140px 0 100px;
+      }
+
+      .phone {
+        width: 260px;
+        height: 540px;
+        border-radius: 40px;
+        padding: 8px;
+      }
+
+      .phone-screen {
+        border-radius: 32px;
+      }
+
+      .phone-notch {
+        width: 66px;
+        height: 18px;
+        top: 10px;
+      }
+
+      .screen-inner {
+        padding: 44px 18px 18px;
+      }
+
+      .screen-balance {
+        font-size: 1.45rem;
+      }
+
+      .nav a:not(.cta) {
+        display: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo">My<em>Money</em></a>
+      <nav class="nav">
+        <a href="#setup">Setup</a>
+        <a href="#download" class="cta">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Private testing. Ghana.
+      </div>
+
+      <h1 class="display xl">
+        Your MoMo,<br>
+        finally <em class="accent">understood.</em>
+      </h1>
+
+      <p class="lead">
+        MyMoney reads the MTN MoMo, Telecel Cash, and AirtelTigo receipts already on your phone. Nothing is uploaded. Nothing is shared.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#download" class="btn btn-primary">Download for Android</a>
+        <a href="#setup" class="btn btn-ghost">Setup guide</a>
+      </div>
+
+      <p class="hero-note">Free during testing. Android 13 and up.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PHONE SHOWCASE
+       ============================================================ -->
+  <section class="showcase">
+    <div class="container">
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="screen-inner">
+
+              <div class="screen-greeting">Good evening, Kofi</div>
+              <div class="screen-balance">GHS 2,340<span class="decimals">.50</span></div>
+              <div class="screen-providers">MTN MoMo · Telecel</div>
+
+              <div class="screen-divider"></div>
+
+              <div class="screen-section-label">Recent</div>
+
+              <div class="tx-row">
+                <div class="tx-left">
+                  <span class="tx-dot food"></span>
+                  <div class="tx-info">
+                    <span class="tx-name">Waakye Joint</span>
+                    <span class="tx-cat">Food &amp; Dining</span>
+                  </div>
+                </div>
+                <span class="tx-amount neg">−25.00</span>
+              </div>
+
+              <div class="tx-row">
+                <div class="tx-left">
+                  <span class="tx-dot transport"></span>
+                  <div class="tx-info">
+                    <span class="tx-name">Uber Trip</span>
+                    <span class="tx-cat">Transportation</span>
+                  </div>
+                </div>
+                <span class="tx-amount neg">−42.00</span>
+              </div>
+
+              <div class="tx-row">
+                <div class="tx-left">
+                  <span class="tx-dot airtime"></span>
+                  <div class="tx-info">
+                    <span class="tx-name">MTN Airtime</span>
+                    <span class="tx-cat">Airtime &amp; Data</span>
+                  </div>
+                </div>
+                <span class="tx-amount neg">−10.00</span>
+              </div>
+
+              <div class="tx-row">
+                <div class="tx-left">
+                  <span class="tx-dot groceries"></span>
+                  <div class="tx-info">
+                    <span class="tx-name">Melcom</span>
+                    <span class="tx-cat">Groceries</span>
+                  </div>
+                </div>
+                <span class="tx-amount neg">−87.40</span>
+              </div>
+
+              <div class="tx-row">
+                <div class="tx-left">
+                  <span class="tx-dot bills"></span>
+                  <div class="tx-info">
+                    <span class="tx-name">ECG Prepaid</span>
+                    <span class="tx-cat">Bills &amp; Utilities</span>
+                  </div>
+                </div>
+                <span class="tx-amount neg">−100.00</span>
+              </div>
+
+              <div class="screen-nav">
+                <div class="screen-nav-item active">
+                  <span class="screen-nav-bar"></span>
+                  Home
+                </div>
+                <div class="screen-nav-item">
+                  <span class="screen-nav-bar"></span>
+                  Activity
+                </div>
+                <div class="screen-nav-item">
+                  <span class="screen-nav-bar"></span>
+                  Budget
+                </div>
+                <div class="screen-nav-item">
+                  <span class="screen-nav-bar"></span>
+                  Settings
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-caption">
+        <div class="eyebrow">Works with receipts from</div>
+        <p>MTN MoMo, Telecel Cash, and AirtelTigo Money.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATEMENT
+       ============================================================ -->
+  <section class="statement">
+    <div class="container">
+      <div class="statement-inner">
+        <div class="eyebrow">Built for Ghana</div>
+        <h2 class="display lg">
+          It knows your <em class="accent">waakye</em> from your <em class="accent">trotro.</em>
+        </h2>
+
+        <p>
+          Waakye from jollof. Trotro from Bolt. ECG from GWCL. Melcom from Makola. And when it isn't sure, you teach it once. It remembers the next time.
+        </p>
+
+        <p>
+          Set your payday, and MyMoney paces your spending from there, with a safe daily figure that updates as the month moves. Register your own MoMo numbers, and transfers between them quietly stop counting as spending.
+        </p>
+
+        <p>
+          Everything happens on your phone. No accounts. No cloud. No analytics. Lock it with your fingerprint, hide it from screenshots, and erase it all with one tap.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SETUP GUIDE
+       ============================================================ -->
+  <section class="setup" id="setup">
+    <div class="container">
+      <div class="setup-header">
+        <div class="eyebrow">Setup guide</div>
+        <h2 class="display lg">
+          One approval, then <em class="accent">never again.</em>
+        </h2>
+        <p class="lead">
+          Android 15 and newer hide SMS access from apps installed outside the Play Store. This is a one-time unlock, and it takes about thirty seconds. Here is exactly what to do.
+        </p>
+      </div>
+
+      <ol class="setup-list">
+        <li class="setup-item">
+          <span class="setup-num">01</span>
+          <div class="setup-body">
+            <h3>Open the app's info page.</h3>
+            <p>Long-press the MyMoney icon on your home screen, then tap <code>App info</code> (the small ⓘ symbol). You can also reach it from Settings, then Apps, then MyMoney.</p>
+          </div>
+        </li>
+
+        <li class="setup-item">
+          <span class="setup-num">02</span>
+          <div class="setup-body">
+            <h3>Allow restricted settings.</h3>
+            <p>Inside the info page, tap the ⋮ menu in the top-right corner, then choose <code>Allow restricted settings</code>. Confirm with your PIN or fingerprint when asked.</p>
+          </div>
+        </li>
+
+        <li class="setup-item">
+          <span class="setup-num">03</span>
+          <div class="setup-body">
+            <h3>Grant SMS permission.</h3>
+            <p>Go back to the info page, open <code>Permissions</code>, then find <code>SMS</code>. The toggle will finally be editable. Turn it on.</p>
+          </div>
+        </li>
+
+        <li class="setup-item">
+          <span class="setup-num">04</span>
+          <div class="setup-body">
+            <h3>Open MyMoney and scan.</h3>
+            <p>Tap <code>Scan SMS</code> once. Your MoMo and Telecel receipts appear instantly. Nothing leaves your device.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="setup-note">
+        <strong>A note for Samsung and Xiaomi users.</strong> The ⋮ menu on Samsung phones may appear as "More." On Xiaomi and Redmi devices, "Allow restricted settings" often sits at the very bottom of the info page, so scroll to find it. If the option is missing entirely, open the app once, close it, then try again.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CLOSING CTA
+       ============================================================ -->
+  <section class="closing" id="download">
+    <div class="container">
+      <h2 class="display lg">
+        Ready to see <em class="accent">clearly?</em>
+      </h2>
+      <p class="lead">
+        Download the early build for Android. It is free while we are testing, and the setup guide above walks you through everything.
+      </p>
+      <a href="#" class="btn btn-primary">Download the APK</a>
+      <p class="closing-note">About 29 MB. Android 13 and up. No account required.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">My<em>Money</em></div>
+        <div class="footer-links">
+          <a href="#setup">Setup</a>
+          <a href="#download">Download</a>
+        </div>
+      </div>
+      <p class="footer-note">Built for testers in Ghana. Data never leaves your device.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
