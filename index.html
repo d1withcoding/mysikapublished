@@ -497,6 +497,231 @@
       color: var(--ink-muted);
       line-height: 1.6;
     }
+    /* ============================================================
+   FEEDBACK
+   ============================================================ */
+[hidden] { display: none !important; }
+
+.feedback {
+  padding: 180px 0;
+  border-top: 1px solid var(--line);
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.feedback-intro .eyebrow { margin-bottom: 32px; }
+.feedback-intro h2 { margin-bottom: 28px; }
+.feedback-intro .lead { max-width: 420px; }
+
+.feedback-alt {
+  margin-top: 28px;
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.feedback-alt a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.feedback-alt a:hover { border-bottom-color: var(--ink); }
+
+/* ---------- form ---------- */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field label,
+.field-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.field .opt {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 13px 15px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder { color: var(--ink-faint); }
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px var(--green-light);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ---------- chips ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip { position: relative; }
+
+.chip input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: #fff;
+  transition: all 0.15s ease;
+}
+
+.chip input:checked + span {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--paper);
+}
+
+.chip input:focus-visible + span {
+  box-shadow: 0 0 0 3px var(--green-light);
+}
+
+/* ---------- actions ---------- */
+.hp { display: none !important; }
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 20px;
+}
+
+.form-actions .btn {
+  height: 48px;
+  padding: 0 26px;
+}
+
+.form-actions .btn[disabled] {
+  opacity: 0.55;
+  cursor: default;
+  background: var(--ink);
+}
+
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.form-error {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #b04a3a;
+}
+
+/* ---------- success ---------- */
+.form-success {
+  text-align: center;
+  padding: 56px 32px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.form-success .success-mark {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.form-success h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 12px;
+}
+
+.form-success p {
+  max-width: 360px;
+  margin: 0 auto 24px;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .feedback-grid { grid-template-columns: 1fr; gap: 48px; }
+  .feedback-intro .lead { max-width: none; }
+}
+
+@media (max-width: 640px) {
+  .feedback { padding: 120px 0; }
+  .field-row { grid-template-columns: 1fr; gap: 28px; }
+  .form-actions { flex-direction: column; align-items: stretch; }
+  .form-actions .btn { width: 100%; }
+  .form-hint { text-align: center; }
+}
 
     /* ============================================================
        STATEMENT
@@ -1035,95 +1260,103 @@
       <a href="https://github.com/d1withcoding/my-money/releases/download/alpha/my-moneyv1.1-alpha.apk" class="btn btn-primary">Download the APK</a>
       <p class="closing-note">About 29 MB. Android 13 and up. No account required.</p>
     </div>
-    <!-- ============================================================
-     FEEDBACK
-     ============================================================ -->
-<section class="feedback" id="feedback">
-  <div class="container">
-    <div class="feedback-grid">
-
-      <!-- Left: intro -->
-      <div class="feedback-intro">
-        <h2 class="display lg">
-          Tell us what's <em class="accent">working.</em>
-        </h2>
-        <p class="lead">
-          Wrong category? A receipt that didn't parse? A merchant we should know by name? Send it over — every report makes the next build sharper.
-        </p>
-        <p class="feedback-alt">
-          Prefer email? Write to
-          <a href="mailto:feedback@mymoney.app">feedback@mymoney.app</a>.
-        </p>
-      </div>
-
-      <!-- Right: form -->
-      <div class="feedback-panel" aria-live="polite">
-
-        <form id="feedback-form" class="feedback-form">
-
-          <div class="field" role="radiogroup" aria-labelledby="fb-type-label">
-            <span class="field-label" id="fb-type-label">What's this about?</span>
-            <div class="chips">
-              <label class="chip">
-                <input type="radio" name="type" value="bug" checked>
-                <span>Something's broken</span>
-              </label>
-              <label class="chip">
-                <input type="radio" name="type" value="idea">
-                <span>An idea</span>
-              </label>
-              <label class="chip">
-                <input type="radio" name="type" value="category">
-                <span>Wrong category</span>
-              </label>
-              <label class="chip">
-                <input type="radio" name="type" value="other">
-                <span>Something else</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="fb-message">Your message</label>
-            <textarea
-              id="fb-message"
-              name="message"
-              rows="5"
-              placeholder="e.g. Uber trips keep landing under Food &amp; Dining instead of Transport."
-              required></textarea>
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="fb-name">Name <span class="opt">optional</span></label>
-              <input type="text" id="fb-name" name="name" autocomplete="name" placeholder="Kofi">
-            </div>
-            <div class="field">
-              <label for="fb-email">Email <span class="opt">optional</span></label>
-              <input type="email" id="fb-email" name="email" autocomplete="email" placeholder="kofi@example.com">
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Send feedback</button>
-            <span class="form-hint"></span>
-          </div>
-
-        </form>
-
-        <!-- Success state -->
-        <div id="feedback-success" class="form-success" tabindex="-1" hidden>
-          <div class="success-mark">✓</div>
-          <h3>Thank you — that's in.</h3>
-          <p>We read every message. If you left an email, we'll get back to you when there's something worth saying.</p>
-          <button type="button" class="btn btn-ghost" id="feedback-again">Send another</button>
+   
+      <!-- ============================================================
+       FEEDBACK
+       ============================================================ -->
+  <section class="feedback" id="feedback">
+    <div class="container">
+      <div class="feedback-grid">
+      
+        <div class="feedback-intro">
+          <div class="eyebrow">Feedback</div>
+          <h2 class="display lg">
+            Tell us what's <em class="accent">working.</em>
+          </h2>
+          <p class="lead">
+            Wrong category? A receipt that didn't parse? A merchant we should know by name? Send it over — every report makes the next build sharper.
+          </p>
+          <p class="feedback-alt">
+            Prefer email? Write to
+            <a href="mailto:d1withcoding@proton.me">feedback@mymoney.app</a>.
+          </p>
         </div>
-
+      
+        <div class="feedback-panel" aria-live="polite">
+        
+          <form
+            id="feedback-form"
+            class="feedback-form"
+            action="https://api.web3forms.com/submit"
+            method="POST"
+          >
+            <input type="hidden" name="access_key" value="e846306c-f304-4ab2-b323-9276a503cdba">
+            <input type="hidden" name="subject" id="fb-subject" value="Bug report — MyMoney">
+            <input type="hidden" name="from_name" value="MyMoney Feedback">
+            <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        
+            <div class="field" role="radiogroup" aria-labelledby="fb-type-label">
+              <span class="field-label" id="fb-type-label">What's this about?</span>
+              <div class="chips">
+                <label class="chip">
+                  <input type="radio" name="type" value="Bug report" checked>
+                  <span>Something's broken</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="type" value="Idea">
+                  <span>An idea</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="type" value="Wrong category">
+                  <span>Wrong category</span>
+                </label>
+                <label class="chip">
+                  <input type="radio" name="type" value="Other">
+                  <span>Something else</span>
+                </label>
+              </div>
+            </div>
+          
+            <div class="field">
+              <label for="fb-message">Your message</label>
+              <textarea
+                id="fb-message"
+                name="message"
+                rows="5"
+                placeholder="e.g. Uber trips keep landing under Food &amp; Dining instead of Transport."
+                required
+              ></textarea>
+            </div>
+          
+            <div class="field-row">
+              <div class="field">
+                <label for="fb-name">Name <span class="opt">optional</span></label>
+                <input type="text" id="fb-name" name="name" autocomplete="name" placeholder="Kofi">
+              </div>
+              <div class="field">
+                <label for="fb-email">Email <span class="opt">optional</span></label>
+                <input type="email" id="fb-email" name="email" autocomplete="email" placeholder="kofi@example.com">
+              </div>
+            </div>
+          
+            <p class="form-error" id="fb-error" hidden></p>
+          
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Send feedback</button>
+            </div>
+          </form>
+        
+          <div id="feedback-success" class="form-success" tabindex="-1" hidden>
+            <div class="success-mark">✓</div>
+            <h3>Thank you — that's in.</h3>
+            <p>We read every message. If you left an email, we'll get back to you when there's something worth saying.</p>
+            <button type="button" class="btn btn-ghost" id="feedback-again">Send another</button>
+          </div>
+        
+        </div>
+      
       </div>
-
     </div>
-  </div>
-</section>
   </section>
 
   <!-- ============================================================
