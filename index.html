@@ -1035,6 +1035,102 @@
       <a href="https://github.com/d1withcoding/mysikapublished/releases/download/new/app-debug.apk" class="btn btn-primary">Download the APK</a>
       <p class="closing-note">About 29 MB. Android 13 and up. No account required.</p>
     </div>
+    <!-- ============================================================
+     FEEDBACK
+     ============================================================ -->
+<section class="feedback" id="feedback">
+  <div class="container">
+    <div class="feedback-grid">
+
+      <!-- Left: intro -->
+      <div class="feedback-intro">
+        <div class="eyebrow">Feedback</div>
+        <h2 class="display lg">
+          Tell us what's <em class="accent">working.</em>
+        </h2>
+        <p class="lead">
+          Wrong category? A receipt that didn't parse? A merchant we should know by name? Send it over — every report makes the next build sharper.
+        </p>
+        <p class="feedback-alt">
+          Prefer email? Write to
+          <a href="mailto:feedback@mymoney.app">feedback@mymoney.app</a>.
+        </p>
+      </div>
+
+      <!-- Right: form -->
+      <div class="feedback-panel" aria-live="polite">
+
+        <form id="feedback-form" class="feedback-form">
+
+          <div class="field" role="radiogroup" aria-labelledby="fb-type-label">
+            <span class="field-label" id="fb-type-label">What's this about?</span>
+            <div class="chips">
+              <label class="chip">
+                <input type="radio" name="type" value="bug" checked>
+                <span>Something's broken</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="type" value="idea">
+                <span>An idea</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="type" value="category">
+                <span>Wrong category</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="type" value="other">
+                <span>Something else</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fb-message">Your message</label>
+            <textarea
+              id="fb-message"
+              name="message"
+              rows="5"
+              placeholder="e.g. Uber trips keep landing under Food &amp; Dining instead of Transport."
+              required></textarea>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fb-name">Name <span class="opt">optional</span></label>
+              <input type="text" id="fb-name" name="name" autocomplete="name" placeholder="Kofi">
+            </div>
+            <div class="field">
+              <label for="fb-email">Email <span class="opt">optional</span></label>
+              <input type="email" id="fb-email" name="email" autocomplete="email" placeholder="kofi@example.com">
+            </div>
+          </div>
+
+          <!-- Honeypot: real people never see this -->
+          <div class="hp" aria-hidden="true">
+            <label for="fb-company">Company</label>
+            <input type="text" id="fb-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send feedback</button>
+            <span class="form-hint">Email is optional - we only use it to reply.</span>
+          </div>
+
+        </form>
+
+        <!-- Success state -->
+        <div id="feedback-success" class="form-success" tabindex="-1" hidden>
+          <div class="success-mark">✓</div>
+          <h3>Thank you — that's in.</h3>
+          <p>We read every message. If you left an email, we'll get back to you when there's something worth saying.</p>
+          <button type="button" class="btn btn-ghost" id="feedback-again">Send another</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
   </section>
 
   <!-- ============================================================
